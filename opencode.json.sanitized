@@ -1,0 +1,145 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "orchestrator",
+  "mcp": {
+    "timeout": {
+      "startup": 120000
+    },
+    "servers": {
+      "linear": {
+        "type": "remote",
+        "url": "https://mcp.linear.app/mcp",
+        "enabled": true
+      },
+      "aws-mcp": {
+        "type": "local",
+        "command": [
+          "/home/ansh/.local/bin/mcp-proxy-for-aws",
+          "https://aws-mcp.us-east-1.api.aws/mcp",
+          "--metadata",
+          "INSTALL_SOURCE=aws-cli"
+        ]
+      },
+      "github": {
+        "type": "remote",
+        "url": "https://api.githubcopilot.com/mcp/",
+        "enabled": true
+      },
+      "supabase": {
+        "type": "remote",
+        "url": "https://mcp.supabase.com/mcp"
+      },
+      "21st": {
+        "type": "remote",
+        "url": "https://21st.dev/api/mcp"
+      },
+      "chrome-devtools": {
+        "type": "local",
+        "disabled": true,
+        "command": [
+          "npx",
+          "-y",
+          "chrome-devtools-mcp@latest"
+        ]
+      },
+      "playwright": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@playwright/mcp@latest"
+        ]
+      },
+      "puppeteer": {
+        "type": "local",
+        "disabled": true,
+        "command": [
+          "npx",
+          "-y",
+          "puppeteer-mcp-server"
+        ]
+      },
+      "filesystem": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@modelcontextprotocol/server-filesystem",
+          "/home/ansh"
+        ]
+      },
+      "memory": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@modelcontextprotocol/server-memory"
+        ]
+      },
+      "[envsitter: DATABASE_URL redacted]": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "mcp-[envsitter: DATABASE_URL redacted]-server"
+        ],
+        "environment": {
+          "DATABASE_URL": "REDACTED_SET_MANUALLY",
+          "PG_ALLOW_WRITE": "false"
+        }
+      },
+      "sqlite": {
+        "type": "local",
+        "command": [
+          "/home/ansh/.local/bin/uvx",
+          "mcp-sqlite",
+          "/home/ansh/sample.db"
+        ],
+        "disabled": true
+      },
+      "sentry": {
+        "type": "remote",
+        "url": "https://mcp.sentry.dev/mcp"
+      },
+      "netlify": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@netlify/mcp"
+        ]
+      },
+      "falkordb": {
+        "type": "local",
+        "command": [
+          "/home/ansh/.cargo/bin/falkordb-mcp"
+        ],
+        "environment": {
+          "FALKORDB_URL": "REDACTED_SET_MANUALLY",
+          "FALKORDB_MCP_ALLOW_WRITES": "1"
+        }
+      },
+      "open-design": {
+        "type": "local",
+        "command": [
+          "docker",
+          "exec",
+          "-i",
+          "open-design",
+          "node",
+          "apps/daemon/dist/cli.js",
+          "mcp",
+          "--daemon-url",
+          "http://127.0.0.1:7456"
+        ]
+      }
+    }
+  },
+  "model": "opencode/deepseek-v4.1-flash-free",
+  "plugins": [
+    "cc-safety-net@latest",
+    "@tarquinen/opencode-dcp@latest",
+    "envsitter-guard@latest",
+    "@slkiser/opencode-quota"
+  ]
+}

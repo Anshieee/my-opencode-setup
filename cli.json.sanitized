@@ -1,0 +1,37 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "session": {
+    "permissions": "autoaccept",
+    "thinking": "show",
+    "new_location": "launch",
+    "image_preview": false,
+    "sidebar": "auto"
+  },
+  "tabs": {
+    "mode": "auto",
+    "scope": "cwd",
+    "layout": "vertical",
+    "indicators": "numbers"
+  },
+  "diffs": {
+    "single": false,
+    "view": "auto"
+  },
+  "attention": {
+    "notifications": true,
+    "sound": true,
+    "volume": 1,
+    "sounds": {
+      "done": "$HOME/.config/opencode/sounds/done.mp3",
+      "subagent_done": "$HOME/.config/opencode/sounds/subagent_done.mp3"
+    }
+  },
+  "debug": {
+    "devtools": false
+  },
+  "animations": true,
+  "theme": {
+    "mode": "system",
+    "name": "tokyonight"
+  }
+}

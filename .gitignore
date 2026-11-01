@@ -1,0 +1,17 @@
+# Secrets & local state
+auth.json
+service.json
+opencode.db
+opencode.db-*
+*.backup-*
+.env
+.env.*
+quota/
+
+# Dependencies / OS noise
+node_modules/
+.DS_Store
+
+# Ignore stray archives, but keep the handoff bundle
+*.tar.gz
+!opencode-config-bundle.tar.gz
