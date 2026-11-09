@@ -1,0 +1,1 @@
+Source: https://github.com/mattpocock/skills commit 4ae2317ddb22b046e26455e4f9c9b3aaaf62212d, skills/productivity/grill-me/SKILL.md. Unmodified standalone source. Native /grill-me command loads both skills and selects one-question-at-a-time interviewing per user preference. No foreign skill directory or plugin bootstrap restored. Updates require a reviewed pinned diff.

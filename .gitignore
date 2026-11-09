@@ -1,0 +1,10 @@
+antigravity-accounts.json
+antigravity-accounts.json.*.tmp
+antigravity-logs/
+antigravity-signature-cache.json
+*.backup*
+backups/
+node_modules/
+secrets/
+.gitignore
+**/node_modules/

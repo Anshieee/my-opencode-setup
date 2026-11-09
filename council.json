@@ -1,0 +1,64 @@
+{
+  "version": 2,
+  "maxConcurrent": 2,
+  "defaultPreset": "focused",
+  "roles": {
+    "correctness": {
+      "label": "Correctness",
+      "model": "opencode-go/muse-spark-1.3-contributor",
+      "mandate": "Check required behavior, edge cases, regressions, and whether evidence supports each criterion. Do not grade style or invent requirements."
+    },
+    "architecture": {
+      "label": "Architecture",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "mandate": "Check boundaries, dependency direction, state ownership, and whether the design fits the stated constraints. Avoid restating correctness findings unless the architecture creates them."
+    },
+    "product": {
+      "label": "Product and UX",
+      "model": "opencode-go/muse-spark-1.3-contributor",
+      "mandate": "Check whether the result serves the stated user workflow, communicates clearly, and preserves meaningful user control. Do not review internals unless they affect the workflow."
+    },
+    "security": {
+      "label": "Security",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "mandate": "Look for concrete trust-boundary, permission, injection, secret, and data-handling risks. Explain plausible impact and evidence; do not offer generic hardening lists."
+    },
+    "reliability": {
+      "label": "Reliability",
+      "model": "opencode-go/muse-spark-1.3-contributor",
+      "mandate": "Check failure handling, cancellation, recovery, idempotence, and state consistency under the declared operating conditions. Do not speculate beyond supplied evidence."
+    },
+    "performance": {
+      "label": "Performance",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "mandate": "Assess latency, memory, throughput, and scaling only against stated constraints and supplied measurements. Separate measured findings from hypotheses."
+    },
+    "jester": {
+      "label": "Jester / meta-skeptic",
+      "model": "opencode-go/muse-spark-1.3-contributor",
+      "mandate": "Challenge hidden assumptions, rubric gaming, and confusing progress with success. Give only falsifiable counterexamples or checks that are in scope and grounded in the supplied contract/evidence. Do not use humor, invent requirements, or add out-of-scope blockers."
+    }
+  },
+  "presets": {
+    "focused": [
+      "correctness",
+      "architecture",
+      "jester"
+    ],
+    "app": [
+      "correctness",
+      "product",
+      "security",
+      "jester"
+    ],
+    "full": [
+      "correctness",
+      "architecture",
+      "product",
+      "security",
+      "reliability",
+      "performance",
+      "jester"
+    ]
+  }
+}

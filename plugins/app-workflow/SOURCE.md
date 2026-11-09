@@ -1,0 +1,1 @@
+Locally maintained OpenCode2.1.3 native command bridge. Source: /home/ansh/Projects/app-toolkit/integration/opencode/plugin/index.js. Registers app-start/demo-ready only; no tools, providers, timers or background service. Update through reviewed source changes and rerun tests/test_bridge.mjs. Other files in this installation are tracked by /home/ansh/agent-toolkit-backups.

@@ -1,0 +1,1 @@
+Locally authored compatibility pointer for /home/ansh/Projects/aftershock/AGENTS.md Orchestration defaults and the verified dev controller. It does not restore the old skill implementation or claim its unknown upstream source. No project instructions were edited.

@@ -1,0 +1,271 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "dev",
+  "providers": {
+    "howtofix": {
+      "name": "HowToFix",
+      "env": [
+        "HOWTOFIX_API_KEY"
+      ],
+      "package": "@opencode/ai/providers/openai-compatible",
+      "settings": {
+        "baseURL": "https://api.howtofix.id/v1"
+      },
+      "models": {
+        "glm-5.3-flash": {
+          "name": "GLM 5.3 Flash"
+        },
+        "mimo-v2.6-flash": {
+          "name": "MiMo V2.6 Flash"
+        },
+        "deepseek-v4-flash": {
+          "name": "DeepSeek V4 Flash"
+        },
+        "deepseek-v4.1-flash-1017": {
+          "name": "DeepSeek V4.1 Flash (1017)"
+        },
+        "deepseek-v4.1-flash": {
+          "name": "DeepSeek V4.1 Flash"
+        }
+      }
+    },
+    "agentrouter": {
+      "name": "AgentRouter",
+      "env": [
+        "PI_GATEWAY_API_KEY"
+      ],
+      "package": "@opencode/ai/providers/openai/responses",
+      "settings": {
+        "baseURL": "https://agentrouter.org/v1"
+      },
+      "models": {
+        "gpt-6.1-sol": {
+          "name": "GPT-6.1 Sol"
+        },
+        "gpt-6-astra": {
+          "name": "GPT-6 Astra"
+        },
+        "gpt-5.6-sol": {
+          "name": "GPT-5.6 Sol"
+        }
+      }
+    }
+  },
+  "mcp": {
+    "timeout": {
+      "startup": 120000
+    },
+    "servers": {
+      "linear": {
+        "type": "remote",
+        "url": "https://mcp.linear.app/mcp",
+        "enabled": true,
+        "disabled": true
+      },
+      "aws-mcp": {
+        "type": "local",
+        "command": [
+          "/home/ansh/.local/bin/mcp-proxy-for-aws",
+          "https://aws-mcp.us-east-1.api.aws/mcp",
+          "--metadata",
+          "INSTALL_SOURCE=aws-cli"
+        ],
+        "disabled": true
+      },
+      "github": {
+        "type": "remote",
+        "url": "https://api.githubcopilot.com/mcp/",
+        "enabled": true,
+        "oauth": false,
+        "headers": {
+          "Authorization": "{file:~/.config/opencode/secrets/github-mcp-auth}"
+        },
+        "disabled": true
+      },
+      "supabase": {
+        "type": "remote",
+        "url": "https://mcp.supabase.com/mcp",
+        "disabled": true
+      },
+      "21st": {
+        "type": "remote",
+        "url": "https://21st.dev/api/mcp",
+        "oauth": false,
+        "headers": {
+          "x-api-key": "{file:~/.config/opencode/secrets/21st-api-key}"
+        },
+        "disabled": true
+      },
+      "chrome-devtools": {
+        "type": "local",
+        "disabled": true,
+        "command": [
+          "npx",
+          "-y",
+          "chrome-devtools-mcp@latest"
+        ]
+      },
+      "playwright": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@playwright/mcp@latest"
+        ],
+        "disabled": true
+      },
+      "puppeteer": {
+        "type": "local",
+        "disabled": true,
+        "command": [
+          "npx",
+          "-y",
+          "puppeteer-mcp-server"
+        ]
+      },
+      "filesystem": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@modelcontextprotocol/server-filesystem",
+          "/home/ansh"
+        ],
+        "disabled": true
+      },
+      "memory": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@modelcontextprotocol/server-memory"
+        ],
+        "disabled": true
+      },
+      "postgres": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "mcp-postgres-server"
+        ],
+        "environment": {
+          "DATABASE_URL": "{env:DATABASE_URL}",
+          "PG_ALLOW_WRITE": "false"
+        },
+        "disabled": true
+      },
+      "sqlite": {
+        "type": "local",
+        "command": [
+          "/home/ansh/.local/bin/uvx",
+          "mcp-sqlite",
+          "/home/ansh/sample.db"
+        ],
+        "disabled": true
+      },
+      "sentry": {
+        "type": "remote",
+        "url": "https://mcp.sentry.dev/mcp",
+        "disabled": true
+      },
+      "netlify": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@netlify/mcp"
+        ],
+        "disabled": true
+      },
+      "falkordb": {
+        "type": "local",
+        "command": [
+          "/home/ansh/.cargo/bin/falkordb-mcp"
+        ],
+        "environment": {
+          "FALKORDB_URL": "{file:~/.config/opencode/secrets/falkordb-url}",
+          "FALKORDB_MCP_ALLOW_WRITES": "1"
+        },
+        "disabled": true
+      },
+      "open-design": {
+        "type": "local",
+        "command": [
+          "docker",
+          "exec",
+          "-i",
+          "open-design",
+          "node",
+          "apps/daemon/dist/cli.js",
+          "mcp",
+          "--daemon-url",
+          "http://127.0.0.1:7456"
+        ],
+        "disabled": true
+      },
+      "wokwi": {
+        "type": "local",
+        "command": [
+          "wokwi-cli",
+          "mcp"
+        ],
+        "environment": {
+          "WOKWI_CLI_TOKEN": "{file:~/.config/opencode/secrets/wokwi-cli-token}"
+        }
+      }
+    }
+  },
+  "model": "opencode-go/muse-spark-1.3-contributor",
+  "provider": {
+    "freellmapi": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "FreeLLMAPI",
+      "options": {
+        "baseURL": "http://localhost:3001/v1",
+        "apiKey": "{file:~/.config/opencode/secrets/freellmapi-api-key}"
+      },
+      "models": {
+        "auto": {
+          "name": "Auto (router picks the best available model)",
+          "limit": {
+            "context": 1048576,
+            "output": 8192
+          }
+        },
+        "fusion": {
+          "name": "Fusion (panel of models answer in parallel, a judge synthesizes one answer)",
+          "limit": {
+            "context": 1048576,
+            "output": 8192
+          }
+        },
+        "claude-opus-4-5": {
+          "name": "Opus slot (auto-routed to a free model)",
+          "limit": {
+            "context": 1048576,
+            "output": 8192
+          }
+        },
+        "claude-haiku-4-5": {
+          "name": "Haiku slot (auto-routed to a free model)",
+          "limit": {
+            "context": 1048576,
+            "output": 8192
+          }
+        }
+      }
+    }
+  },
+  "plugins": [
+    "envsitter-guard@latest",
+    "@slkiser/opencode-quota",
+    "opencode-antigravity-auth@2.1.2",
+    "opencode-zed-auth@0.1.1",
+    "@prevalentware/opencode-loop-plugin",
+    "@prevalentware/opencode-goal-plugin"
+  ],
+  "instructions": [
+    "/home/ansh/.config/opencode/instructions/plain-language.md"
+  ]
+}
